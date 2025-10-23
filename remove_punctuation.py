@@ -14,3 +14,11 @@ def remove_punctuation(lines):
 
     # 最终返回按行列表
     return [line + '\n' for line in selected_lines]
+
+
+def remove_cn_punctuation(lines):
+    cleaned_lines = []
+    for line in lines:
+        cleaned_line = re.sub(r"[，。、]", ' ', line)
+        cleaned_lines.append(cleaned_line)
+    return cleaned_lines

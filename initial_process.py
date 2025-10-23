@@ -2,7 +2,7 @@ import re
 
 def initial_process(lines):
     """
-    处理 srt 行列表：清除说话人标签、括号内容，提取字幕内容并合并成一个纯文本段落
+    处理 srt 行列表：清除说话人标签、括号内容，提取字幕内容并合并成一个纯文本段落，然后根据标点进行断句
     参数:
         lines (List[str]): 原始 .srt 行列表
     返回:
@@ -46,4 +46,8 @@ def initial_process(lines):
     merged_text = re.sub(r'\[.*?\]', '', merged_text)
     merged_text = re.sub(r'\(.*?\)', '', merged_text)
 
+    # 根据标点符号进行断句
+    merged_text = re.sub(r'([,.!?])', r'\1\n', merged_text)
+
     return merged_text
+
